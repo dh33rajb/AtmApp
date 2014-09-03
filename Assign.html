@@ -1,0 +1,166 @@
+<html>
+<body>
+<h1>Programming</h1>
+
+<h3>Overview of the problem</h3>
+
+You are to continue the development of software for a simple banking situation. To 
+extend the simulation we wish to now introduce the following features: customers will 
+now have up to three accounts, a savings account, a cheque account and a credit card 
+account. Customer details will be loaded from and saved to files. An ATM 
+(Automatic Teller Machine) will be included which generates transactions to be saved 
+to the file used in parts 1. 
+
+<h3>Programming additions. </h3>
+
+Inheritance must be made use of in this assignment. You should modify the savings 
+account class from part 1 to be a generic bank account similar features as 
+before. From this generic bank account you will derive the specific accounts: savings, 
+cheque and credit card. It is likely you will make use of polymorphic functions, a 
+simple example would be to have different display functions. A quality 
+assignment would also make use of pointers and linked lists instead of arrays. 
+
+<h2>Account details</h2>
+
+<h3>Bank account </h3>
+
+The generic bank account should contain an account number and balance data 
+members but no interest rate. Functions to deposit, withdraw and display should be 
+included. The withdraw function should not allow an account to be over-drawn (a 
+withdrawal more than the balance). Other functions such as setup, match, getbalance 
+and getaccount number may be included. 
+
+<h3>Savings account </h3>
+
+The savings account should include an additional data member for the interest rate as 
+in part 1. An interest calculation function will be needed. The display function 
+should show the interest rate. 
+
+<h3>Cheque account </h3>
+
+The cheque account does not accrue interest. There should be no interest rate data 
+member. The account can be over-drawn in this case by $100. The display function 
+should note if an account is over-drawn. 
+
+<h3>Credit card account </h3>
+
+The credit card account should include an interest rate and a credit limit. The credit 
+limit should be set at $5000. The interest rate is 18%. Note: a balance in this account 
+represents the amount owing and the available credit = limit – balance. Therefore a 
+debit will now increase the balance i.e. the amount owed. The display function should 
+indicate the available credit in addition to the balance. Initially the balance will be 0 
+so the available credit will be 5000. Include a function to check if the credit limit is 
+exceeded and use this function in your display function. 
+
+<h3>Customer data file </h3>
+
+The customer data file will have the following structure: 
+Name 
+Address 
+Account type (char code S, C, K, X) 
+Account number (account 1) 
+Balance (account 1) 
+Account type (account 2) 
+Account number (account 2) 
+Balance (account 2) 
+Etc 
+
+
+A customer will have at least one account. In some cases they will have 2 or 3 
+accounts. The end of the account list for a given customer will be signified by an X 
+account type code. Study the customer.dat file and make sure you can read 
+it properly. After transactions have been applied as in part 1 you should save 
+the customer data back to the file. 
+Account type codes: S = savings, C = cheque, K = credit card, X = end of accounts 
+Allow for at least 10 customers though the initial sample file may contain 
+less. 
+
+
+<h3>Customer class structure </h3>
+
+Your customer class structure needs to be modified from part 1 to allow for 
+multiple accounts. You need to allow for the possibility a customer will have three 
+accounts of the types described earlier. A simple Pass level solution might have 3 
+individual object variables. A Distinction level or above would use a linked list and 
+dynamically create the accounts as required. The search accounts function (see 
+part 1 solution) will need to be modified accordingly. 
+Warning: be careful considering use of an array as the objects are of different types. 
+
+<h3>ATM Machine </h3>
+
+The ATM component should present an on-screen interactive menu typical of such 
+machines. There should be a facility similar to entering a PIN number. In this case 
+you should use a customer’s account number. The customer file can be searched for 
+this account and if present the machine will then display a menu with the options: 
+
+1 Withdraw Cash 
+2 Deposit 
+3 Show balance 
+4 Quit 
+
+Multiple operations on the one account should be possible and multiple 
+accounts/customers should be able to be dealt with. Each operation should generate a 
+transaction which is appended to a fresh transaction file. Use a different file name and 
+provide a facility for entering the file name when processing transactions. A PIN of 9999 
+should be used to quit the machine. This transaction file can then be run against 
+the customer data as in part 1. Transactions in the file should have the same 
+format as in part 1. 
+Hint: It is suggested that your ATM class contain a customer object (and possibly a 
+bank account object) or pointers to these so you can load a customer’s data in order to 
+generate the transactions. 
+
+<h3>Operation of your program </h3>
+
+Your program should read the customer data and transaction file supplied
+and correctly apply the transactions to the customers and their accounts. Your 
+program should produce a balance for all customers on screen first then apply the 
+transactions, producing an on-screen display of the account and the transaction then 
+produce an updated balance on screen for every customer. Customers should be 
+updated in the customer file. 
+The program should then enter ATM mode and allow operations on accounts. After 
+exiting the ATM mode the new transactions generated should be applied to the 
+customer data file and the updated customer data stored. A final update balance for all 
+customers should then be displayed on screen. 
+
+<h2>Suggested stages of development</h2>
+
+<h3>Stage 1</h3>
+
+Develop the generic bank account class and derive savings account, cheque account 
+and credit card classes. Modify the customer class to contain objects of these types. 
+Add suitable functions to the customer class to read and write the customer data. 
+Make sure your program can read all customer and transaction data from the files
+and produce correct balances as in part 1. 
+Additional comments: On-screen display may be sparse, code style (identifier 
+naming, use of variables, use of functions, object-orientedness, use of comments) may 
+be deficient in some respects. One or two minor errors in calculations or omissions 
+will be accepted. ATM functionality, if included may be procedural in nature. 
+
+<h3>Stage 2</h3>
+
+Add the ATM class and develop suitable functions to generate and write new 
+transactions to the transaction file. Make sure you can run the new transactions 
+against the updated customer data from stage 1 and produce new balances. 
+Additional grading comments: On-screen display should be good, well-laid out and 
+there should be few code style issues (see Pass level above). Calculations should all 
+be correct (check them and make sure). 
+
+<h3>Stage 3</h3>
+
+Incorporate pointers and linked lists into your program for example in storing the 
+different account types for a customer. You may write your own linked list code or 
+use the code for unordered linked lists as supplied as a starting point. 
+Hint: Declare the list to be of generic bank account type then assign derived object 
+types to the list. 
+There should be essentially no faults in coding style 
+(see above) and screen display should be clear and easy to use. Calculations must all 
+be correct. Linked list implementation or use of pointers may be deficient in some 
+respects. 
+
+<h3>Stage 4</h3>
+
+Extend the use of linked lists to the storage of customers and transactions in classes 
+such as ProcessTrans (see part 1). 
+Linked list implementation & pointer use should be  good otherwise as for distinction level. 
+</body>
+</html>
